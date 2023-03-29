@@ -37,24 +37,24 @@ export default function SpaceWidget({ spaceId }) {
   const generateTable = (tableData) => {
     return tableData.map((item, index) => {
       return (
-        <div className={spaceWidgetStyles.tableRow}>
-            <div className={spaceWidgetStyles.rowTitle}>
-              <RowTitle>{item.label}</RowTitle>
-            </div>
-
-            <div className={spaceWidgetStyles.rowIcon}>
-              <Image
-                height={20}
-                width={20}
-                src={item.icon}
-                alt="The Wi-Fi icon"
-              />
-            </div>
-
-            <div className={spaceWidgetStyles.rowDescription}>
-              <Body>{item.value}</Body>
-            </div>
+        <div className={spaceWidgetStyles.tableRow} key={index}>
+          <div className={spaceWidgetStyles.rowTitle}>
+            <RowTitle>{item.label}</RowTitle>
           </div>
+
+          <div className={spaceWidgetStyles.rowIcon}>
+            <Image
+              height={20}
+              width={20}
+              src={item.icon}
+              alt="The Wi-Fi icon"
+            />
+          </div>
+
+          <div className={spaceWidgetStyles.rowDescription}>
+            <Body>{item.value}</Body>
+          </div>
+        </div>
       );
     });
   };
