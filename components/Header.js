@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Listbox } from '@headlessui/react';
 import Image from 'next/image';
 import headerStyles from '@/styles/Header.module.css';
@@ -21,6 +20,7 @@ export default function Header({ selectedBorough, setSelectedBorough, dropdownOp
                 height={18}
                 width={18}
                 src="/images/chevron-down.svg"
+                alt="An icon indicating a dropdown menu"
               />
             </Listbox.Button>
             <Listbox.Options className={headerStyles.dropdownOptions}>
@@ -45,6 +45,7 @@ export default function Header({ selectedBorough, setSelectedBorough, dropdownOp
             height={20}
             width={20}
             src="/images/filter-toggle.svg"
+            alt="An icon for filtering results"
           />
         </div>
       </div>

@@ -1,0 +1,52 @@
+.outerContainer {
+  display: flex;
+  overflow: hidden;
+}
+
+.innerContainer {
+  display: flex;
+  width: 345px;
+  height: 270px;
+}
+
+.slide {
+  position: relative;
+  flex: 0 0 100%;
+  min-width: 0;
+}
+
+.buttonContainer {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-self: center;
+  width: 345px;
+  z-index: 1;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  border: 0;
+  margin: 10px;
+  border-radius: 100px;
+  background-color: var(--background-rgba);
+  box-shadow: 0 0 5px 0.5px rgba(0, 0, 0, 0.1);
+}
+
+.buttonLeft {
+  padding: 5px 6px 5px 5px;
+}
+
+.buttonRight {
+  padding: 5px 5px 6px 6px;
+}
+
+/* Desktop */
+@media (min-width: 700px) {
+  .button:hover {
+    cursor: pointer;
+  }
+}

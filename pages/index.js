@@ -40,11 +40,11 @@ const dropdownOptions = [
   { id: 33, name: 'Westminster' }
 ];
 
-const exampleSpaceIds = [0, 1, 2]; // To do: Get these from db.
+const exampleSpaceIds = [0]; // To do: Get these from db.
 
 export default function Home() {
   const [selectedBorough, setSelectedBorough] = useState(dropdownOptions[0]);
-  const [spaceIds, setSpaceIds] = useState(null); // To do: Replace 'exampleSpaceIds' with 'null'.
+  const [spaceIds, setSpaceIds] = useState(exampleSpaceIds); // To do: Replace 'exampleSpaceIds' with 'null'.
 
   useEffect(() => {
     // To do: Retrieve relevant exampleSpaceIds from db here.
@@ -53,14 +53,14 @@ export default function Home() {
   
   const generateSpaceWidgets = () => {
     return spaceIds.map((spaceId, index) => {
-      return (<SpaceWidget spaceId={spaceId} />);
+      return (<SpaceWidget spaceId={spaceId} key={index} />);
     });
   };
   
   // To do: Delete this after testing.
-  const handleOnClick = () => {
-    setSpaceIds(exampleSpaceIds);
-  };
+  // const handleOnClick = () => {
+  //   setSpaceIds(exampleSpaceIds);
+  // };
 
   return (
     <>
@@ -78,7 +78,7 @@ export default function Home() {
       />
       
       <main className={homeStyles.main}>
-        <span onClick={handleOnClick}>Click me</span>
+        {/* <span onClick={handleOnClick}>Click me</span> */}
         {spaceIds && generateSpaceWidgets()}
       </main>
     </>

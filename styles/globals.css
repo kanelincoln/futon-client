@@ -5,6 +5,7 @@
   /* Colours */
   --primary-rgba: rgb(51, 51, 51, 1);
   --secondary-rgba: rgba(255, 255, 255, 1);
+  --background-rgba: rgba(249, 249, 249, 1);
   --border-rgba: rgba(219, 219, 219, 1);
 
   /* Radii */
@@ -20,9 +21,7 @@
 
 html,
 body {
-  max-width: 100vw;
-  overflow-x: hidden;
-  background-color: rgba(249, 249, 249, 1);
+  background-color: var(--background-rgba);
   font-family: var(--inter-font);
 }
 
