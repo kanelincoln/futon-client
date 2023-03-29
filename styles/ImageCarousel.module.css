@@ -1,6 +1,9 @@
 .outerContainer {
   display: flex;
   overflow: hidden;
+  border-radius: var(--large-border-radius);
+  transform: translateZ(0);
+  isolation: isolate;
 }
 
 .innerContainer {

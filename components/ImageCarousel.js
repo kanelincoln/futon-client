@@ -45,7 +45,7 @@ export default function ImageCarousel({ altText, imagePaths }) {
     });
   };
 
-  return (    
+  return (
     <div className={imageCarouselStyles.outerContainer} ref={emblaRef}>
       <div className={imageCarouselStyles.innerContainer}>
         {imagePaths && generateSlides()}
