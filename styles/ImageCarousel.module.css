@@ -36,6 +36,10 @@
   box-shadow: 0 0 5px 0.5px rgba(0, 0, 0, 0.1);
 }
 
+.button:disabled {
+  visibility: hidden;
+}
+
 .buttonLeft {
   padding: 5px 6px 5px 5px;
 }

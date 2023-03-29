@@ -55,6 +55,7 @@ export default function ImageCarousel({ altText, imagePaths }) {
         <button
           className={`${imageCarouselStyles.button} ${imageCarouselStyles.buttonLeft}`}
           onClick={onClickPrev}
+          disabled={!showPrevButton}
         >
           <Image
             height={18}
@@ -67,6 +68,7 @@ export default function ImageCarousel({ altText, imagePaths }) {
         <button
           className={`${imageCarouselStyles.button} ${imageCarouselStyles.buttonRight}`}
           onClick={onClickNext}
+          disabled={!showNextButton}
         >
           <Image
             height={18}
