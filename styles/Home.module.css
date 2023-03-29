@@ -3,11 +3,14 @@
   justify-content: center;
   flex-wrap: wrap;
   position: relative;
-  top: 100px;
+  top: 110px;
   max-width: var(--max-width);
   margin: 0 auto;
-  background-color: blue;
 }
 
 /* Desktop */
-@media (min-width: 700px) { }
+@media (min-width: 700px) {
+  .main {
+    top: 140px;
+  }
+}

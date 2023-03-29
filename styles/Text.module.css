@@ -1,0 +1,28 @@
+.title, .subtitle, .rowTitle {
+  font-weight: 500;
+}
+
+.title {
+  font-size: 2rem;
+}
+
+.subtitle {
+  padding-top: 5px;
+  font-size: 1rem;
+  color: rgba(199, 199, 199, 1);
+}
+
+.rowTitle {
+  color: var(--primary-rgba);
+}
+
+.body {
+  color: rgba(132, 132, 132, 1);
+}
+
+/* Desktop */
+@media (min-width: 700px) {
+  .title, .subtitle, .rowTitle {
+    font-weight: 400;
+  }
+}

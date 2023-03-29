@@ -8,7 +8,7 @@
 
 .innerContainer {
   display: flex;
-  width: 345px;
+  width: var(--max-column-width);
   height: 270px;
 }
 
@@ -23,7 +23,7 @@
   display: flex;
   justify-content: space-between;
   align-self: center;
-  width: 345px;
+  width: var(--max-column-width);
   z-index: 1;
 }
 
