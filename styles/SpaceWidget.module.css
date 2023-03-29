@@ -1,0 +1,11 @@
+.container {
+  background-color: red;
+  height: 500px;
+}
+
+/* Desktop */
+@media (min-width: 700px) {
+  .container {
+    width: 500px;
+  }
+}

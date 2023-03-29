@@ -5,6 +5,7 @@
   justify-content: center;
   background: rgba(236, 236, 236, 1);
   border: 1px solid var(--border-rgba);
+  z-index: 1;
 }
 
 .searchContainer {
@@ -26,7 +27,7 @@
 
 .dropdownOptions {
   position: absolute;
-  height: 363px;
+  height: 360px;
   margin-top: 20px;
   background-color: rgba(255, 255, 255, 1);
   border-radius: var(--large-border-radius);
@@ -51,7 +52,6 @@
   display: block;
   border-radius: var(--small-border-radius);
   padding: 10px 15px;
-  /* margin: 5px; */
   font-weight: 500;
 }
 
