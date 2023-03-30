@@ -13,8 +13,9 @@
   justify-content: space-between;
   align-items: center;
   background-color: rgba(255, 255, 255, 1);
-  width: 470px;
-  margin: 10px;
+  min-width: var(--max-column-width);
+  max-width: 470px;
+  margin: 10px 0;
   padding: 10px 12px;
   border: 1px solid var(--border-rgba);
   border-radius: 25px;
@@ -52,7 +53,7 @@
   display: block;
   border-radius: var(--small-border-radius);
   padding: 10px 15px;
-  font-weight: 500;
+  font-weight: var(--default-font-weight);
 }
 
 .dropdownOption:hover {
@@ -104,11 +105,11 @@
 /* Desktop */
 @media (min-width: 700px) {
   .dropdownButton {
-    font-weight: 400;
+    font-weight: var(--desktop-default-font-weight);
   }
 
   .dropdownOption {
-    font-weight: 500;
+    font-weight: var(--default-font-weight);
   }
 
   .dropdownOption:hover {

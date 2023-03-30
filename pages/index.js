@@ -40,7 +40,7 @@ const dropdownOptions = [
   { id: 33, name: 'Westminster' }
 ];
 
-const exampleSpaceIds = [0]; // To do: Get these from db.
+const exampleSpaceIds = [0, 1, 2, 3, 4]; // To do: Get these from db.
 
 export default function Home() {
   const [selectedBorough, setSelectedBorough] = useState(dropdownOptions[0]);

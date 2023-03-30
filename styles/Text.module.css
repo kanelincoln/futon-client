@@ -1,28 +1,24 @@
-.title, .subtitle, .rowTitle {
+.h1, .h2 {
   font-weight: 500;
 }
 
-.title {
-  font-size: 2rem;
-}
-
-.subtitle {
+.h2 {
   padding-top: 5px;
   font-size: 1rem;
   color: rgba(199, 199, 199, 1);
 }
 
-.rowTitle {
-  color: var(--primary-rgba);
-}
-
-.body {
-  color: rgba(132, 132, 132, 1);
+.p {
+  color: var(--body-text-rgba);
 }
 
 /* Desktop */
 @media (min-width: 700px) {
-  .title, .subtitle, .rowTitle {
-    font-weight: 400;
+  .h1, .h2 {
+    font-weight: var(--default-font-weight);
+  }
+
+  .p {
+    font-size: 15px;
   }
 }

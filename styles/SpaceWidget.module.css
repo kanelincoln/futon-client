@@ -2,7 +2,8 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  max-width: 800px;
+  max-width: var(--max-column-width);
+  margin: 0 0 40px 0;
 }
 
 .leftColumn, .rightColumn {
@@ -10,7 +11,7 @@
 }
 
 .rightColumn {
-  margin-top: 30px;
+  margin: 30px 0 0 0;
 }
 
 .table {
@@ -20,12 +21,16 @@
 
 .tableRow {
   display: flex;
-  padding: 10px 0;
+  padding: 10px 0 9px 0;
   border-bottom: 1px solid var(--table-border-rgba);
 }
 
-.rowTitle {
+.rowTitleContainer {
   width: 130px;
+}
+
+.rowTitle {
+  color: var(--primary-rgba);
 }
 
 .rowIcon {
@@ -43,10 +48,26 @@
   color: rgba(132, 132, 132, 1);
 }
 
-/* Desktop */
-@media (min-width: 700px) {
+.buttonContainer {
+  display: flex;
+  margin: 30px 0;
+}
+
+/* Tablet */
+@media (min-width: 720px) and (max-width: 1280px) {
+  .container {
+    max-width: calc(40 + (2 * var(--max-column-width)));
+    margin: 0 0 80px 0;
+  }
+
   .rightColumn {
-    margin-top: 20px;
-    margin-left: 40px;
+    margin: 0 0 0 40px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1280px) {
+  .container {
+    margin: 0 40px 80px 40px;
   }
 }

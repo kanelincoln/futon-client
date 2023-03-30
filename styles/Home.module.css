@@ -4,13 +4,21 @@
   flex-wrap: wrap;
   position: relative;
   top: 110px;
-  max-width: var(--max-width);
   margin: 0 auto;
 }
 
-/* Desktop */
-@media (min-width: 700px) {
+/* Tablet */
+@media (min-width: 720px) and (max-width: 1280px) {
   .main {
     top: 140px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1280px) {
+  .main {
+    top: 140px;
+    justify-content: left;
+    max-width: 1260px;
   }
 }
