@@ -1,0 +1,29 @@
+.container {
+  margin-top: 25px;
+  border-top: 1px solid var(--table-border-rgba);
+}
+
+.tableRow {
+  display: flex;
+  padding: 10px 0 9px 0;
+  border-bottom: 1px solid var(--table-border-rgba);
+}
+
+.rowTitleContainer {
+  width: 130px;
+}
+
+.rowTitle {
+  color: var(--primary-rgba);
+}
+
+.rowIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rowDescription {
+  width: 100%;
+  text-align: right;
+}

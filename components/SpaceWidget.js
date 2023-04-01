@@ -1,18 +1,28 @@
 import { useState } from 'react';
-import Image from 'next/image';
 import Button from '@/components/Button';
 import ImageCarousel from '@/components/ImageCarousel';
 import Text from '@/components/Text';
 import spaceWidgetStyles from '@/styles/SpaceWidget.module.css';
+import Table from '@/components/Table';
 
 const exampleSpace = {
   id: '0',
   name: 'Co.',
   affordability: 3,
-  tableData: [
-    { label: 'Wi-Fi', icon: '/images/wi-fi.svg', value: 'None' },
-    { label: 'Loudness', icon: '/images/loudness.svg', value: 'Quiet' },
-    { label: 'Power', icon: '/images/power.svg', value: 'Plentiful' },
+  tabular: [
+    { label: 'Type', value: 'Cafe' },    
+    { label: 'Wi-Fi', value: 'None' },
+    { label: 'Loudness', value: 'Quiet' },
+    { label: 'Power', value: 'Plentiful' },
+    { label: 'Size', value: 'Medium (16 – 30)' },
+    { label: 'Space', value: 'Moderate' },
+    { label: 'Busyness', value: 'Quiet' },
+    { label: 'Coffee', value: 'Good' },
+    { label: 'Hotspot', value: 'Fast' },
+    { label: 'Website', value: 'www.co-london.co.uk'},
+    { label: 'Tube', value: 'Knightsbridge' },
+    // { label: 'Hours', value: ['08:00 – 17:00', '08:00 – 17:00'],
+    // { label: 'Rules', value: '' }
   ],
   urls: {
     directions: 'https://goo.gl/maps/RNDttRjL3ZaZa9KV6',
@@ -39,36 +49,6 @@ export default function SpaceWidget({ spaceId }) {
     }
   };
 
-  const generateTable = (tableData) => {
-    return tableData.map((item, index) => {
-      return (
-        <div className={spaceWidgetStyles.tableRow} key={index}>
-          <div className={spaceWidgetStyles.rowTitleContainer}>
-            <Text.P
-              className={spaceWidgetStyles.rowTitle}
-              customStyles={{ color: 'rgba(51, 51, 51, 1)' }}
-            >
-              {item.label}
-            </Text.P>
-          </div>
-
-          <div className={spaceWidgetStyles.rowIcon}>
-            <Image
-              height={20}
-              width={20}
-              src={item.icon}
-              alt="The Wi-Fi icon"
-            />
-          </div>
-
-          <div className={spaceWidgetStyles.rowDescription}>
-            <Text.P>{item.value}</Text.P>
-          </div>
-        </div>
-      );
-    });
-  };
-
   return (
     <section className={spaceWidgetStyles.container}>
       <div className={spaceWidgetStyles.leftColumn}>
@@ -76,17 +56,15 @@ export default function SpaceWidget({ spaceId }) {
       </div>
 
       <div className={spaceWidgetStyles.rightColumn}>
-        <Text.H1>{space.name}</Text.H1>
-        <Text.H2>{generateAffordabilityIndicator(space.affordability)}</Text.H2>
+        <div className={spaceWidgetStyles.aboveTableInformationContainer}>
+          <div>
+            <Text.H1>{space.name}</Text.H1>
+            <Text.H2>{generateAffordabilityIndicator(space.affordability)}</Text.H2>
+          </div>
+            <Button url={space.urls.directions}>Go</Button>
+        </div>
         
-        <div className={spaceWidgetStyles.table}>
-          {space && generateTable(space.tableData)}
-        </div>
-
-        <div className={spaceWidgetStyles.buttonContainer}>
-          <Button url={`/space/${space.id}`}>Details</Button>
-          <Button url={space.urls.directions} secondary>Go</Button>
-        </div>
+        {space && <Table data={space.tabular} shortList={['Wi-Fi', 'Loudness', 'Power']} />}
       </div>
     </section>
   );

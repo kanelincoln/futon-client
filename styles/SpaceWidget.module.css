@@ -14,34 +14,11 @@
   margin: 30px 0 0 0;
 }
 
-.table {
-  margin-top: 25px;
-  border-top: 1px solid var(--table-border-rgba);
-}
-
-.tableRow {
+.aboveTableInformationContainer {
   display: flex;
-  padding: 10px 0 9px 0;
-  border-bottom: 1px solid var(--table-border-rgba);
-}
-
-.rowTitleContainer {
-  width: 130px;
-}
-
-.rowTitle {
-  color: var(--primary-rgba);
-}
-
-.rowIcon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.rowDescription {
+  justify-content: space-between;
+  align-items: flex-end;
   width: 100%;
-  text-align: right;
 }
 
 .affordabilityFilled {
@@ -53,8 +30,8 @@
   margin: 30px 0;
 }
 
-/* Tablet */
-@media (min-width: 720px) and (max-width: 1280px) {
+/* Tablet, Desktop */
+@media (min-width: 800px) {
   .container {
     max-width: calc(40 + (2 * var(--max-column-width)));
     margin: 0 0 80px 0;
@@ -62,12 +39,5 @@
 
   .rightColumn {
     margin: 0 0 0 40px;
-  }
-}
-
-/* Desktop */
-@media (min-width: 1280px) {
-  .container {
-    margin: 0 40px 80px 40px;
   }
 }

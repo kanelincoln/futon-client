@@ -5,20 +5,13 @@
   position: relative;
   top: 110px;
   margin: 0 auto;
+  max-width: 600px;
 }
 
-/* Tablet */
-@media (min-width: 720px) and (max-width: 1280px) {
+/* Tablet, Desktop */
+@media (min-width: 800px) {
   .main {
     top: 140px;
-  }
-}
-
-/* Desktop */
-@media (min-width: 1280px) {
-  .main {
-    top: 140px;
-    justify-content: left;
     max-width: 1260px;
   }
 }

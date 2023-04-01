@@ -1,31 +1,16 @@
-.primary, .secondary {
+.container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   min-width: 80px;
-  padding: 15px 25px;
+  padding: 12px 15px;
   border-radius: var(--small-border-radius);
-}
-
-.primary {
-  flex-basis: 70%;
   color: var(--primary-rgba);
   background-color: rgba(187, 204, 219, 1);
-  margin-right: 15px;
 }
 
-.primary:hover {
-  background-color: rgba(187, 204, 219, 0.8);
-}
-
-.secondary {
-  flex-basis: 30%;
-  color: var(--secondary-rgba);
-  background-color: var(--primary-rgba);
-}
-
-.secondary:hover {
-  background-color: rgb(51, 51, 51, 0.9);
+.container:hover {
+  background-color: rgba(187, 204, 219, 0.85);
 }
 
 /* Desktop */
