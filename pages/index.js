@@ -47,6 +47,12 @@ export default function Home() {
   const [spaceIds, setSpaceIds] = useState(exampleSpaceIds); // To do: Replace 'exampleSpaceIds' with 'null'.
 
   useEffect(() => {
+    // To do: Retrieve list of boroughs containing at least a single entry/space.
+    // e.g. if we've found no spaces in Barnet, don't present Barnet as an option in dropdown.
+    
+  });
+
+  useEffect(() => {
     // To do: Retrieve relevant exampleSpaceIds from db here.
     console.log('selectedBorough is:', selectedBorough);
   }, [selectedBorough, spaceIds]);
@@ -56,11 +62,6 @@ export default function Home() {
       return (<SpaceWidget spaceId={spaceId} key={index} />);
     });
   };
-  
-  // To do: Delete this after testing.
-  // const handleOnClick = () => {
-  //   setSpaceIds(exampleSpaceIds);
-  // };
 
   return (
     <>
