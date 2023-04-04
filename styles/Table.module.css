@@ -3,9 +3,13 @@
   border-top: 1px solid rgba(0, 0, 0, 0.25);
 }
 
+.tableRowHidden {
+  display: none;
+}
+
 .tableRow {
   display: grid;
-  grid-template-columns: 1.5fr 1fr 4fr;
+  grid-template-columns: 1.5fr 0.5fr 4fr;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
   padding: 10px 0 9px 0;
@@ -21,6 +25,7 @@
   text-align: right;
   overflow: hidden;
   color: var(--body-text-secondary-rgba);
+  padding-left: 5px;
 }
 
 .tableRow div:nth-of-type(3) a {
@@ -35,7 +40,7 @@
   text-decoration: none;
 }
 
-.toggle {
+.toggleWhenExpanded, .toggleWhenCollapsed {
   display: flex;
   float: right;
   align-items: center;
@@ -44,10 +49,14 @@
   font-size: 14px;
 }
 
-.toggle:hover {
+.toggleWhenExpanded:hover, .toggleWhenCollapsed:hover {
   cursor: pointer;
 }
 
-.toggle img {
+.toggleWhenExpanded img, .toggleWhenCollapsed img {
   margin-left: 5px;
+}
+
+.toggleWhenCollapsed img {
+  transform: rotate(180deg);
 }

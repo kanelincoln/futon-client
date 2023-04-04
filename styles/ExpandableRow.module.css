@@ -1,0 +1,27 @@
+.collapsed, .expanded {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.collapsed {
+  max-height: 20px;
+}
+
+.collapsed:hover, .expanded:hover {
+  cursor: pointer;
+}
+
+.collapsed p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.collapsed img, .expanded img {
+  margin: 1px 0 0 5px;
+}
+
+.collapsed img {
+  transform: rotate(180deg);
+}
