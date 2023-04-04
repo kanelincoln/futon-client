@@ -60,3 +60,11 @@
 .toggleWhenCollapsed img {
   transform: rotate(180deg);
 }
+
+.hours, .hoursToday {
+  margin-bottom: 5px;
+}
+
+.hoursToday {
+  color: var(--body-text-primary-rgba);
+}

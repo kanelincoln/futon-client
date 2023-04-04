@@ -4,7 +4,6 @@ import Text from '@/components/Text';
 import expandableRowStyles from '@/styles/ExpandableRow.module.css';
 
 export default function ExpandableRow({ contentWhenCollapsed, children }) {
-  const [contentToShow, setContentToShow] = useState(contentWhenCollapsed);
   const [expanded, setExpanded] = useState(false);
 
   const generateContent = () => {

@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
+import { format } from 'date-fns';
 import Text from '@/components/Text';
 import ExpandableRow from '@/components/ExpandableRow';
 import tableStyles from '@/styles/Table.module.css';
@@ -41,15 +41,26 @@ export default function TableStyles({ data, shortList }) {
 
     switch (nameOfRow) {
       case 'Hours':
+        const currentDay = format(new Date(), 'EEEE');
+        const hoursArray = Object.keys(content).map((nameOfDay) => {
+          return { 'day': nameOfDay, 'hours': content[nameOfDay] };
+        });
+
         return (
-          // To do: Change colour of current day's information
-          // To do: Show current day's opening hours on collapsed view
-          <ExpandableRow contentWhenCollapsed={'Monday: 08:00 – 17:00'}>
-            {content.map((data, index) => {
-            return (<Text.P key={index} customStyles={{ marginBottom: '5px' }}>{data.day}: {data.hours}</Text.P>);
+          <ExpandableRow contentWhenCollapsed={`${currentDay}: ${content[currentDay]}`}>
+            {hoursArray.map((dayHoursObject, index) => {
+              return (
+                <Text.P
+                  key={index}
+                  className={dayHoursObject.day === currentDay ? tableStyles.hoursToday : tableStyles.hours}
+                >
+                  {dayHoursObject.day}: {dayHoursObject.hours}
+                </Text.P>
+              );
             })}
           </ExpandableRow>
         );
+        
       case 'Rules':
         return (
         <ExpandableRow contentWhenCollapsed={content}>
