@@ -1,7 +1,7 @@
 .outerContainer {
   display: flex;
   overflow: hidden;
-  border-radius: var(--large-border-radius);
+  border-radius: var(--border-radius-large);
   transform: translateZ(0);
   isolation: isolate;
 }

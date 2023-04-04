@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 import Text from '@/components/Text';
 import tableStyles from '@/styles/Table.module.css';
@@ -24,12 +25,30 @@ export default function TableStyles({ data, shortList }) {
   };
 
   const handleClick = () => {
-    const keysOfDataObject = data.map((item) => item.label);
-    setRows(keysOfDataObject);
+    if (expanded) {
+      setRows(shortList);
+      setExpanded(false);
+    } else {
+      const keysOfDataObject = data.map((item) => item.label);
+      setRows(keysOfDataObject);
+      setExpanded(true);
+    }
+  };
 
-    // To do: Change button label and icon.
-    //
-    // setExpanded(true);
+  const generateLastColumn = (nameOfRow, content) => {
+    const rowsRequiringUniqueFormatting = ['Website', 'Hours'];
+    if (!rowsRequiringUniqueFormatting.includes(nameOfRow)) return (<Text.P>{content}</Text.P>);
+
+    switch (nameOfRow) {
+      case 'Website': return (<Text.P><Link href={content} target="_blank">{content}</Link></Text.P>)
+      case 'Hours':
+        return content.map((hours, index) => {
+          // To do: Change colour of current day's information
+          // To do: Show current day's opening hours on collapsed view
+          const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+          return (<Text.P key={index} customStyles={{ marginBottom: '5px' }}>{days[index]}: {hours}</Text.P>);
+        });
+    }
   };
 
   const generateRows = (data) => {
@@ -37,7 +56,7 @@ export default function TableStyles({ data, shortList }) {
       if (rows.includes(item.label)) {
         return (
           <div className={tableStyles.tableRow} key={index}>
-            <div className={tableStyles.rowTitleContainer}>
+            <div>
               <Text.P
                 className={tableStyles.rowTitle}
                 customStyles={{ color: 'rgba(51, 51, 51, 1)' }}
@@ -46,7 +65,7 @@ export default function TableStyles({ data, shortList }) {
               </Text.P>
             </div>
 
-            <div className={tableStyles.rowIcon}>
+            <div>
               <Image
                 height={20}
                 width={20}
@@ -55,8 +74,8 @@ export default function TableStyles({ data, shortList }) {
               />
             </div>
 
-            <div className={tableStyles.rowDescription}>
-              <Text.P>{item.value}</Text.P>
+            <div>
+              {generateLastColumn(item.label, item.value)}
             </div>
           </div>
         );
@@ -67,7 +86,15 @@ export default function TableStyles({ data, shortList }) {
   return (
     <div className={tableStyles.container}>
       {rows && generateRows(data)}
-      <div className={tableStyles.button} onClick={handleClick}>Expand</div>
+      <div className={tableStyles.toggle} onClick={handleClick}>
+        {expanded ? 'Less' : 'More'}
+        <Image
+          height={16}
+          width={16}
+          src={`/images/${expanded ? 'dark-chevron-up.svg' : 'dark-chevron-down.svg'}`}
+          alt={`An arrow pointing ${expanded ? 'up' : 'down'}`}
+        />
+      </div>
     </div>
   );
 };

@@ -3,16 +3,14 @@
   --max-column-width: 340px;
 
   /* Colours */
-  --primary-rgba: rgb(51, 51, 51, 1);
-  --secondary-rgba: rgba(255, 255, 255, 1);
-  --background-rgba: rgba(249, 249, 249, 1);
+  --body-text-primary-rgba: rgba(51, 51, 51, 1);
+  --body-text-secondary-rgba: rgba(132, 132, 132, 1);
   --border-rgba: rgba(219, 219, 219, 1);
-  --table-border-rgba: rgba(0, 0, 0, 0.25);
-  --body-text-rgba: rgba(132, 132, 132, 1);
+  --background-rgba: rgba(255, 255, 255, 1);
 
   /* Radii */
-  --small-border-radius: 10px;
-  --large-border-radius: 15px;
+  --border-radius-small: 10px;
+  --border-radius-large: 15px;
 
   /* Fonts */
   --default-font-weight: 400;
@@ -32,7 +30,7 @@ body {
 }
 
 body {
-  color: var(--primary-rgba);
+  color: var(--body-text-primary-rgba);
 }
 
 a {

@@ -19,10 +19,18 @@ const exampleSpace = {
     { label: 'Busyness', value: 'Quiet' },
     { label: 'Coffee', value: 'Good' },
     { label: 'Hotspot', value: 'Fast' },
-    { label: 'Website', value: 'www.co-london.co.uk'},
+    { label: 'Website', value: 'https://www.co-london.co.uk'},
     { label: 'Tube', value: 'Knightsbridge' },
-    // { label: 'Hours', value: ['08:00 – 17:00', '08:00 – 17:00'],
-    // { label: 'Rules', value: '' }
+    { label: 'Hours', value: [
+      '08:00 – 17:00',
+      '08:00 – 17:00',
+      '08:00 – 17:00',
+      '08:00 – 17:00',
+      '08:00 – 17:00',
+      '08:00 – 17:00',
+      '08:00 – 17:00'
+    ]},
+    { label: 'Rules', value: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.' }
   ],
   urls: {
     directions: 'https://goo.gl/maps/RNDttRjL3ZaZa9KV6',

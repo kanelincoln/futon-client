@@ -60,9 +60,9 @@ export default function ImageCarousel({ altText, imagePaths }) {
           <Image
             height={18}
             width={18}
-            src="/images/chevron-left.svg"
+            src="/images/dark-chevron-left.svg"
             alt="An icon indicating a dropdown menu"
-          />
+            />
         </button>
 
         <button
@@ -73,7 +73,7 @@ export default function ImageCarousel({ altText, imagePaths }) {
           <Image
             height={18}
             width={18}
-            src="/images/chevron-right.svg"
+            src="/images/dark-chevron-right.svg"
             alt="An icon indicating a dropdown menu"
           />
         </button>

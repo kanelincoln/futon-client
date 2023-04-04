@@ -3,7 +3,6 @@ import Image from 'next/image';
 import buttonStyles from '@/styles/Button.module.css';
 
 export default function Button({ url, children }) {
-
   return (
     <Link
       href={url}
@@ -14,7 +13,7 @@ export default function Button({ url, children }) {
       <Image
         height={18}
         width={18}
-        src={'images/chevron-right.svg'}
+        src={'images/dark-chevron-right.svg'}
         alt="An arrow pointing to the right"
       />
     </Link>

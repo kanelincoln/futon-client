@@ -3,7 +3,9 @@ import Image from 'next/image';
 import headerStyles from '@/styles/Header.module.css';
 
 export default function Header({ selectedBorough, setSelectedBorough, dropdownOptions }) {
-  // To do: Add function to automatically locate user and set the dropdown to the relevant location.
+  // To do:
+  // – Only show boroughs that have a space associated with them (e.g. if no spaces exist in Barnet, hide from dropdown).
+  // – Add function to automatically locate user and set the dropdown to the relevant location.
 
   const handleFilterClick = () => {
     console.log('Filter button has been clicked.');
@@ -19,7 +21,7 @@ export default function Header({ selectedBorough, setSelectedBorough, dropdownOp
               <Image
                 height={18}
                 width={18}
-                src="/images/chevron-down.svg"
+                src="/images/light-chevron-down.svg"
                 alt="An icon indicating a dropdown menu"
               />
             </Listbox.Button>
