@@ -1,8 +1,12 @@
 import { useEffect, useState } from 'react';
+
 import Head from 'next/head';
+
 import Header from '@/components/Header.js';
 import SpaceWidget from '@/components/SpaceWidget';
 import homeStyles from '@/styles/Home.module.css';
+
+import { gql, useQuery } from '@apollo/client';
 
 const dropdownOptions = [
   { id: 1, name: 'Barking & Dagenham' },
@@ -42,15 +46,25 @@ const dropdownOptions = [
 
 const exampleSpaceIds = [0, 1, 2, 3, 4]; // To do: Get these from db.
 
+const GET_BOROUGHS_WITH_SPACES = gql`
+  query BoroughsWithSpaces {
+    boroughs(where: { spaces: { borough_id: { _is_null: false } } }) {
+      name
+    }
+  }
+`;
+
 export default function Home() {
   const [selectedBorough, setSelectedBorough] = useState(dropdownOptions[0]);
   const [spaceIds, setSpaceIds] = useState(exampleSpaceIds); // To do: Replace 'exampleSpaceIds' with 'null'.
+  
+  // Fetch data
+  const { loading, error, data, refetch } = useQuery(GET_BOROUGHS_WITH_SPACES);
 
-  useEffect(() => {
-    // To do: Retrieve list of boroughs containing at least a single entry/space.
-    // e.g. if we've found no spaces in Barnet, don't present Barnet as an option in dropdown.
-    
-  });
+  // useEffect(() => {
+  //   // To do: Retrieve list of boroughs containing at least a single entry/space.
+  //   // e.g. if we've found no spaces in Barnet, don't present Barnet as an option in dropdown.
+  // });
 
   useEffect(() => {
     // To do: Retrieve relevant exampleSpaceIds from db here.
@@ -62,6 +76,17 @@ export default function Home() {
       return (<SpaceWidget spaceId={spaceId} key={index} />);
     });
   };
+
+
+  if (loading) {
+    return <p>Loading...</p>;
+  };
+
+  if (error) {
+    console.log('Error fetching data:', error)
+  };
+
+  console.log('data is:', data);
 
   return (
     <>
