@@ -25,10 +25,11 @@ export default function Header({ selectedBorough, setSelectedBorough, dropdownOp
                 alt="An icon indicating a dropdown menu"
               />
             </Listbox.Button>
+
             <Listbox.Options className={headerStyles.dropdownOptions}>
-              {dropdownOptions.map((option, optionId) => (
+              {dropdownOptions.map((option) => (
                 <Listbox.Option
-                  key={optionId}
+                  key={option.id}
                   className={headerStyles.dropdownOptionWrapper}
                   value={option}
                 >
