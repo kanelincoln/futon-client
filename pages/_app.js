@@ -7,7 +7,8 @@ import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache } from '@apollo/c
 const createApolloClient = () => {
   return new ApolloClient({
     link: new HttpLink({
-      uri: 'http://localhost:4000/', // To do: Replace this with env var, e.g. `${process.env.GRAPHQL_URL}`
+      uri: process.env.NEXT_PUBLIC_GRAPHQL_URL,
+      // uri: 'http://localhost:4000'
     }),
     cache: new InMemoryCache()
   });
