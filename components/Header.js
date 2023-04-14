@@ -1,23 +1,21 @@
-import { Listbox } from '@headlessui/react';
 import Image from 'next/image';
-import headerStyles from '@/styles/Header.module.css';
+
+import { Listbox } from '@headlessui/react';
+
+import hStyles from '@/styles/Header.module.css';
 
 export default function Header({ selectedBorough, setSelectedBorough, dropdownOptions }) {
-  // To do:
-  // – Only show boroughs that have a space associated with them (e.g. if no spaces exist in Barnet, hide from dropdown).
-  // – Add function to automatically locate user and set the dropdown to the relevant location.
-
   const handleFilterClick = () => {
     console.log('Filter button has been clicked.');
   };
-
+  
   return (
-    <header className={headerStyles.header}>
-      <div className={headerStyles.searchContainer}>
-        <div className={headerStyles.dropdownContainer}>
+    <header className={hStyles.header}>
+      <div className={hStyles.searchContainer}>
+        <div className={hStyles.dropdownContainer}>
           <Listbox value={selectedBorough} onChange={setSelectedBorough}>
-            <Listbox.Button className={headerStyles.dropdownButton}>
-              <span className={headerStyles.dropdownButtonLabel}>{selectedBorough.name}</span>
+            <Listbox.Button className={hStyles.dropdownButton}>
+              <span className={hStyles.dropdownButtonLabel}>{selectedBorough.name}</span>
               <Image
                 height={18}
                 width={18}
@@ -26,15 +24,15 @@ export default function Header({ selectedBorough, setSelectedBorough, dropdownOp
               />
             </Listbox.Button>
 
-            <Listbox.Options className={headerStyles.dropdownOptions}>
+            <Listbox.Options className={hStyles.dropdownOptions}>
               {dropdownOptions.map((option) => (
                 <Listbox.Option
                   key={option.id}
-                  className={headerStyles.dropdownOptionWrapper}
+                  className={hStyles.dropdownOptionWrapper}
                   value={option}
                 >
                   {({ selected }) => (
-                    <span className={selected ? headerStyles.dropdownOptionSelected : headerStyles.dropdownOption }>{option.name}</span>
+                    <span className={selected ? hStyles.dropdownOptionSelected : hStyles.dropdownOption }>{option.name}</span>
                   )}
                 </Listbox.Option>
                 ))}
@@ -42,7 +40,7 @@ export default function Header({ selectedBorough, setSelectedBorough, dropdownOp
           </Listbox>
         </div>
 
-        <div className={headerStyles.filterButton}>
+        <div className={hStyles.filterButton}>
           <Image
             onClick={handleFilterClick}
             height={20}

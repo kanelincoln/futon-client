@@ -1,6 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+
 import Image from 'next/image';
+
 import Text from '@/components/Text';
+
 import expandableRowStyles from '@/styles/ExpandableRow.module.css';
 
 export default function ExpandableRow({ contentWhenCollapsed, children }) {

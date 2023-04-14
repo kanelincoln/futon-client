@@ -27,6 +27,10 @@
   z-index: 1;
 }
 
+.buttonContainerHidden {
+  display: none;
+}
+
 .button {
   display: flex;
   justify-content: center;

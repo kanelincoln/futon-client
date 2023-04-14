@@ -1,50 +1,71 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import Head from 'next/head';
 
 import Header from '@/components/Header.js';
 import SpaceWidget from '@/components/SpaceWidget';
-import homeStyles from '@/styles/Home.module.css';
+
+import hStyles from '@/styles/Home.module.css';
 
 import { gql, useQuery } from '@apollo/client';
 
-const exampleSpaceIds = [0, 1, 2, 3, 4]; // To do: Get these from db.
-
-const getBoroughsWithSpaces = gql`
+const GetBoroughsWithSpaces = gql`
   query GetBoroughsWithSpaces {
     boroughsWithSpaces {
+      id
+      name
+      spaces {
         id
         name
-        spaces {
-          id
-          name
+        affordability
+        type
+        wiFi,
+        loudness
+        power
+        size
+        space
+        busyness
+        coffee
+        hotspot
+        hours {
+          day
+          open
+          close 
         }
+        images {
+          url
+        }
+        rules
+        googleMaps
+      }
     }
   }
 `;
 
 export default function Home() {
   const [selectedBorough, setSelectedBorough] = useState(null);
-  const [spaceIds, setSpaceIds] = useState(exampleSpaceIds); // To do: Replace 'exampleSpaceIds' with 'null'.
   
-  const query = useQuery(getBoroughsWithSpaces);
+  const query = useQuery(GetBoroughsWithSpaces);
   
   const generateSpaceWidgets = () => {
-    return spaceIds.map((spaceId, index) => {
-      return (<SpaceWidget spaceId={spaceId} key={index} />);
+    return spacesToShow.map((space, index) => {
+      return (<SpaceWidget space={space} key={index} />);
     });
   };
 
   if (query.loading) {
     return <p>Loading...</p>;
   };
-
+  
   if (query.error) {
     console.log('Error fetching data:', query.error);
-    return <p>Error...</p>;
   };
-
+  
   const { boroughsWithSpaces } = query.data;
+
+  // By default, we display the Spaces associated with the first item in the boroughsWithSpaces list.
+  // Auto-increment columns in PostgreSQL start from 1, not 0.
+  const spacesToShow = selectedBorough ? boroughsWithSpaces[selectedBorough.id - 1].spaces : boroughsWithSpaces[0].spaces;
 
   return (
     <>
@@ -61,10 +82,9 @@ export default function Home() {
         dropdownOptions={boroughsWithSpaces}
       />
       
-      <main className={homeStyles.main}>
-        {/* <span onClick={handleOnClick}>Click me</span> */}
-        {spaceIds && generateSpaceWidgets()}
+      <main className={hStyles.main}>
+        {spacesToShow && generateSpaceWidgets()}
       </main>
     </>
   );
-}
+};

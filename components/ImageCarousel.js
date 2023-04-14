@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
 import useEmblaCarousel from 'embla-carousel-react';
-import imageCarouselStyles from '@/styles/ImageCarousel.module.css';
+import icStyles from '@/styles/ImageCarousel.module.css';
 
-export default function ImageCarousel({ altText, imagePaths }) {
+export default function ImageCarousel({ altText, images }) {
   const [showPrevButton, setShowPrevButton] = useState(false);
   const [showNextButton, setShowNextButton] = useState(true);
   const [emblaRef, emblaApi] = useEmblaCarousel({ draggable: false });
@@ -28,11 +28,11 @@ export default function ImageCarousel({ altText, imagePaths }) {
   }, [emblaApi, onSelect]);
 
   const generateSlides = () => {
-    return imagePaths.map((path, index) => {
+    return images.map(({ url }, index) => {
       return (
-        <div className={imageCarouselStyles.slide} key={index}>
+        <div className={icStyles.slide} key={index}>
           <Image
-            src={path}
+            src={url}
             alt={`An image of ${altText}`}
             fill
             sizes='345px'
@@ -46,14 +46,14 @@ export default function ImageCarousel({ altText, imagePaths }) {
   };
 
   return (
-    <div className={imageCarouselStyles.outerContainer} ref={emblaRef}>
-      <div className={imageCarouselStyles.innerContainer}>
-        {imagePaths && generateSlides()}
+    <div className={icStyles.outerContainer} ref={emblaRef}>
+      <div className={icStyles.innerContainer}>
+        {images && generateSlides()}
       </div>
 
-      <div className={imageCarouselStyles.buttonContainer}>
+      <div className={images.length > 1 ? icStyles.buttonContainer : icStyles.buttonContainerHidden}>
         <button
-          className={`${imageCarouselStyles.button} ${imageCarouselStyles.buttonLeft}`}
+          className={`${icStyles.button} ${icStyles.buttonLeft}`}
           onClick={onClickPrev}
           disabled={!showPrevButton}
         >
@@ -66,7 +66,7 @@ export default function ImageCarousel({ altText, imagePaths }) {
         </button>
 
         <button
-          className={`${imageCarouselStyles.button} ${imageCarouselStyles.buttonRight}`}
+          className={`${icStyles.button} ${icStyles.buttonRight}`}
           onClick={onClickNext}
           disabled={!showNextButton}
         >
