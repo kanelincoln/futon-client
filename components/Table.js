@@ -14,9 +14,16 @@ export default function TableStyles({ data, shortList }) {
 
   const ratingsSchema = {
     'Wi-Fi': {
-      1: 'Very slow',
+      1: 'None',
       2: 'Slow',
-      3: 'OK',
+      3: 'Moderate',
+      4: 'Fast',
+      5: 'Very fast'
+    },
+    'Hotspot': {
+      1: 'None',
+      2: 'Slow',
+      3: 'Moderate',
       4: 'Fast',
       5: 'Very fast'
     },
@@ -52,16 +59,9 @@ export default function TableStyles({ data, shortList }) {
     'Coffee': {
       1: 'Very bad',
       2 :'Bad',
-      3: 'OK',
+      3: 'Average',
       4: 'Good',
       5: 'Very good'
-    },
-    'Hotspot': {
-      1: 'Very slow',
-      2: 'Slow',
-      3: 'OK',
-      4: 'Fast',
-      5: 'Very fast'
     },
   };
   
@@ -76,7 +76,7 @@ export default function TableStyles({ data, shortList }) {
     'Coffee': 'coffee.svg',
     'Hotspot': 'hotspot.svg',
     'Hours': 'hours.svg',
-    'Rules': 'rules.svg'
+    'Comments': 'comments.svg'
   };
 
   const handleClick = () => {
@@ -95,7 +95,7 @@ export default function TableStyles({ data, shortList }) {
   };
 
   const generateLastColumn = (nameOfRow, content) => {
-    const rowsRequiringUniqueFormatting = ['Type', 'Hours', 'Rules'];
+    const rowsRequiringUniqueFormatting = ['Type', 'Hours', 'Comments'];
     if (!rowsRequiringUniqueFormatting.includes(nameOfRow)) return (<Text.P>{convertRatingToAdjective(nameOfRow, content)}</Text.P>);
 
     switch (nameOfRow) {
@@ -125,7 +125,7 @@ export default function TableStyles({ data, shortList }) {
           </ExpandableRow>
         );
         
-      case 'Rules':
+      case 'Comments':
         if (content) {
           return (
             <ExpandableRow contentWhenCollapsed={content}>

@@ -35,7 +35,7 @@ const GetBoroughsWithSpaces = gql`
         images {
           url
         }
-        rules
+        comments
         googleMaps
       }
     }

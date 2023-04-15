@@ -47,7 +47,7 @@ export default function SpaceWidget({ space }) {
             <Button url={space.googleMaps}>Go</Button>
         </div>
         
-        {space && <Table data={generateTableData()} shortList={['Wi-Fi', 'Loudness', 'Power']} />}
+        {space && <Table data={generateTableData()} shortList={['Wi-Fi', 'Hotspot', 'Loudness', 'Power']} />}
       </div>
     </section>
   );
