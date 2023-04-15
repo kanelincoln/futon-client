@@ -13,14 +13,56 @@ export default function TableStyles({ data, shortList }) {
   const [expanded, setExpanded] = useState(false);
 
   const ratingsSchema = {
-    'Wi-Fi': { 1: 'Very slow', 2: 'Slow', 3: 'OK', 4: 'Fast', 5: 'Very fast' },
-    'Loudness': { 1: 'Silent', 2: 'Quiet', 3: 'Moderate', 4: 'Loud' },
-    'Power': { 1: 'None', 2: 'Scant', 3: 'Available', 4: 'Plentiful' },
-    'Size': { 1: 'Extra Small (1 – 5)', 2: 'Small (6 – 15)', 3: 'Medium (16 – 30)', 4: 'Large (31 – 50)', 5: 'Extra Large (50+)' },
-    'Space': { 1: 'Tight', 2: 'Moderate', 3: 'Spacious' },
-    'Busyness': { 1: 'Quiet', 2: 'Moderate', 3: 'Busy' },
-    'Coffee': { 1: 'Very bad', 2 :'Bad', 3: 'OK', 4: 'Good', 5: 'Very good' },
-    'Hotspot': { 1: 'Very slow', 2: 'Slow', 3: 'OK', 4: 'Fast', 5: 'Very fast' },
+    'Wi-Fi': {
+      1: 'Very slow',
+      2: 'Slow',
+      3: 'OK',
+      4: 'Fast',
+      5: 'Very fast'
+    },
+    'Loudness': {
+      1: 'Silent',
+      2: 'Quiet',
+      3: 'Moderate',
+      4: 'Loud'
+    },
+    'Power': {
+      1: 'None',
+      2: 'Scant',
+      3: 'Available',
+      4: 'Plentiful'
+    },
+    'Size': {
+      1: 'Extra Small (1 – 5)',
+      2: 'Small (6 – 15)',
+      3: 'Medium (16 – 30)',
+      4: 'Large (31 – 50)',
+      5: 'Extra Large (50+)'
+    },
+    'Space': {
+      1: 'Tight',
+      2: 'Moderate',
+      3: 'Spacious'
+    },
+    'Busyness': {
+      1: 'Quiet',
+      2: 'Moderate',
+      3: 'Busy'
+    },
+    'Coffee': {
+      1: 'Very bad',
+      2 :'Bad',
+      3: 'OK',
+      4: 'Good',
+      5: 'Very good'
+    },
+    'Hotspot': {
+      1: 'Very slow',
+      2: 'Slow',
+      3: 'OK',
+      4: 'Fast',
+      5: 'Very fast'
+    },
   };
   
   const iconRefs = {

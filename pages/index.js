@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Head from 'next/head';
 
@@ -43,29 +43,32 @@ const GetBoroughsWithSpaces = gql`
 `;
 
 export default function Home() {
-  const [selectedBorough, setSelectedBorough] = useState(null);
-  
   const query = useQuery(GetBoroughsWithSpaces);
-  
-  const generateSpaceWidgets = () => {
-    return spacesToShow.map((space, index) => {
-      return (<SpaceWidget space={space} key={index} />);
-    });
-  };
+  const [selectedBorough, setSelectedBorough] = useState({});
+
+  useEffect(() => {
+    if (query.data && query.data.boroughsWithSpaces && !selectedBorough.id) {
+      setSelectedBorough(query.data.boroughsWithSpaces[0]);
+    }
+  }, [query.data, selectedBorough]);
 
   if (query.loading) {
     return <p>Loading...</p>;
-  };
-  
+  }
+
   if (query.error) {
     console.log('Error fetching data:', query.error);
-  };
-  
-  const { boroughsWithSpaces } = query.data;
+    return <p>Error occurred while fetching data.</p>;
+  }
 
-  // By default, we display the Spaces associated with the first item in the boroughsWithSpaces list.
-  // Auto-increment columns in PostgreSQL start from 1, not 0.
-  const spacesToShow = selectedBorough ? boroughsWithSpaces[selectedBorough.id - 1].spaces : boroughsWithSpaces[0].spaces;
+  const { boroughsWithSpaces } = query.data;
+  const spacesToShow = selectedBorough.spaces || [];
+
+  const generateSpaceWidgets = () => {
+    return spacesToShow.map((space, index) => {
+      return <SpaceWidget space={space} key={space.id} />;
+    });
+  };
 
   return (
     <>
@@ -77,14 +80,12 @@ export default function Home() {
       </Head>
 
       <Header
-        selectedBorough={selectedBorough ? selectedBorough : boroughsWithSpaces[0]}
+        selectedBorough={selectedBorough}
         setSelectedBorough={setSelectedBorough}
         dropdownOptions={boroughsWithSpaces}
       />
-      
-      <main className={hStyles.main}>
-        {spacesToShow && generateSpaceWidgets()}
-      </main>
+
+      <main className={hStyles.main}>{generateSpaceWidgets()}</main>
     </>
   );
 };
