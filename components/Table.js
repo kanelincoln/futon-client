@@ -104,9 +104,18 @@ export default function TableStyles({ data, shortList }) {
 
       case 'Hours':
         const today = format(new Date(), 'EEEE');
+
+        function isTodayInArray() {
+          for (const dayHoursObj of content) {
+            if (dayHoursObj.day === today) return true;
+          }
+          return false;
+        }
+
         const hoursToday = () => {
           for (const hours of content) {
             if (hours.day === today) return `${hours.open} – ${hours.close}`;
+            else if (!isTodayInArray()) return 'Closed';
           }
         };
 

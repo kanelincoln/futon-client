@@ -65,7 +65,7 @@ export default function Home() {
   const spacesToShow = selectedBorough.spaces || [];
 
   const generateSpaceWidgets = () => {
-    return spacesToShow.map((space, index) => {
+    return spacesToShow.map((space) => {
       return <SpaceWidget space={space} key={space.id} />;
     });
   };

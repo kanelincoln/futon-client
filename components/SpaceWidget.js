@@ -11,7 +11,7 @@ export default function SpaceWidget({ space }) {
   };
 
   const includeInTable = ['type', 'wiFi', 'hotspot', 'loudness', 'power', 'size', 'space', 'busyness', 'coffee', 'hours'];
-  if (space.rules !== '') includeInTable.push('rules');
+  if (space.comments !== '') includeInTable.push('comments');
 
   const generateTableData = () => {
     return includeInTable.map((item) => {
