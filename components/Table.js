@@ -35,7 +35,7 @@ export default function TableStyles({ data, shortList }) {
     },
     'Power': {
       1: 'None',
-      2: 'Scant',
+      2: 'Limited',
       3: 'Available',
       4: 'Plentiful'
     },

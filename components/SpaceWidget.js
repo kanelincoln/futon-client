@@ -22,7 +22,7 @@ export default function SpaceWidget({ space }) {
     });
   };
 
-  const generateAffordabilityIndicator = (affordability) => {
+  const generateAffordabilityIndicator = () => {
     switch (space.affordability) {
       case 1: return (<><span className={swStyles.affordabilityFilled}>£</span>££££</>)
       case 2: return (<><span className={swStyles.affordabilityFilled}>££</span>£££</>)
