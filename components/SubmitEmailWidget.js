@@ -37,7 +37,6 @@ export default function SubmitEmailWidget({ selectedBorough, numberOfSpacesHidde
       console.error(error);
     }
     
-    window.scrollTo(0, 0);
     setButtonDisabled(false);
     setButtonContent('Give me access');
   };
