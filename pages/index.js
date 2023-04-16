@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import Head from 'next/head';
 
 import Header from '@/components/Header.js';
+import Text from '@/components/Text';
+import Button from '@/components/Button';
 import SpaceWidget from '@/components/SpaceWidget';
 
 import hStyles from '@/styles/Home.module.css';
@@ -50,6 +52,8 @@ export default function Home() {
     if (query.data && query.data.boroughsWithSpaces && !selectedBorough.id) {
       setSelectedBorough(query.data.boroughsWithSpaces[0]);
     }
+    
+    window.scrollTo(0, 0);
   }, [query.data, selectedBorough]);
 
   if (query.loading) {
@@ -70,6 +74,15 @@ export default function Home() {
     });
   };
 
+  const generateSpacesFoundNotice = () => {
+    const singularOrPlural = spacesToShow.length === 1 ? 'space' : 'spaces';
+    return (
+      <Text.P className={hStyles.spacesFoundNotice}>
+        We've found <span className={hStyles.numberOfSpacesFound}>{spacesToShow.length}</span> {singularOrPlural} in {selectedBorough.name}.
+      </Text.P>
+      );
+  };
+
   return (
     <>
       <Head>
@@ -85,7 +98,10 @@ export default function Home() {
         dropdownOptions={boroughsWithSpaces}
       />
 
-      <main className={hStyles.main}>{generateSpaceWidgets()}</main>
+      <main className={hStyles.main}>
+        {generateSpacesFoundNotice()}
+        {generateSpaceWidgets()}
+      </main>
     </>
   );
 };

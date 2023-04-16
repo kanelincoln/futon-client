@@ -14,8 +14,7 @@
   justify-content: space-between;
   align-items: center;
   background-color: rgba(255, 255, 255, 1);
-  min-width: var(--max-column-width);
-  max-width: 470px;
+  min-width: var(--space-widget-column-width);
   margin: 10px 0;
   padding: 10px 12px;
   border: 1px solid var(--border-rgba);
@@ -93,7 +92,7 @@
   cursor: pointer;
 }
 
-.filterButton {
+.button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -102,7 +101,6 @@
   background-color: rgba(235, 235, 235, 1);
   border-radius: var(--border-radius-large);
 }
-
 
 /* Desktop */
 @media (min-width: 700px) {
@@ -118,11 +116,11 @@
     background-color: rgba(235, 235, 235, 1);
   }
 
-  .filterButton {
+  .addSpaceButton {
     background-color: rgba(245, 245, 245, 1);
   }
 
-  .filterButton:hover {
+  .addSpaceButton:hover {
     cursor: pointer;
     background-color: rgba(235, 235, 235, 1);
   }

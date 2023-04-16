@@ -1,6 +1,6 @@
 :root {
   /* Sizing */
-  --max-column-width: 340px;
+  --space-widget-column-width: 340px;
 
   /* Colours */
   --body-text-primary-rgba: rgba(51, 51, 51, 1);
