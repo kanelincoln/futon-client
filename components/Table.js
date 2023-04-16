@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { format } from 'date-fns';
+import { event } from 'nextjs-google-analytics';
 
 import Text from '@/components/Text';
 import ExpandableRow from '@/components/ExpandableRow';

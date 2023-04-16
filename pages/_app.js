@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import '@/styles/globals.css';
 import { Inter } from 'next/font/google';
-
 import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache } from '@apollo/client';
+
+import { GoogleAnalytics } from 'nextjs-google-analytics';
+
+import '@/styles/globals.css';
 
 const createApolloClient = () => {
   return new ApolloClient({
@@ -30,7 +32,7 @@ export default function App({ idToken, Component, pageProps }) {
         }`
         }
       </style>
-
+      <GoogleAnalytics trackPageViews />
       <Component {...pageProps} />
     </ApolloProvider>
   );
