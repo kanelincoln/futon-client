@@ -36,7 +36,8 @@ export default function SubmitEmailWidget({ selectedBorough, numberOfSpacesHidde
     } catch (error) {
       console.error(error);
     }
-
+    
+    window.scrollTo(0, 0);
     setButtonDisabled(false);
     setButtonContent('Give me access');
   };
@@ -58,7 +59,7 @@ export default function SubmitEmailWidget({ selectedBorough, numberOfSpacesHidde
         </Text.P>
 
         <Text.P>
-          {`If you’d like immediate access view to all of the spaces on Futon, submit your name and email address.`}
+          {`If you’d like immediate access to view all of the spaces on Futon, submit your name and email address.`}
         </Text.P>
       </div>
 

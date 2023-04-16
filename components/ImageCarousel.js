@@ -6,7 +6,7 @@ import icStyles from '@/styles/ImageCarousel.module.css';
 export default function ImageCarousel({ altText, images }) {
   const [showPrevButton, setShowPrevButton] = useState(false);
   const [showNextButton, setShowNextButton] = useState(true);
-  const [emblaRef, emblaApi] = useEmblaCarousel({ draggable: false });
+  const [emblaRef, emblaApi] = useEmblaCarousel();
 
   const onClickNext = useCallback(() => {
     if (emblaApi) emblaApi.scrollNext();
