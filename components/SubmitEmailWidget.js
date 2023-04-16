@@ -13,8 +13,6 @@ const AddEmailToAirtable = gql`
 `;
 
 export default function SubmitEmailWidget({ selectedBorough, numberOfSpacesHidden, setEmailSubmitted }) {
-  console.log('numberOfSpacesHidden', numberOfSpacesHidden);
-  console.log('selectedBorough', selectedBorough);
   const [buttonContent, setButtonContent] = useState('Give me access');
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const [addEmailToAirtable] = useMutation(AddEmailToAirtable);
