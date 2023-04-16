@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
-
 import { Listbox } from '@headlessui/react';
+import { event } from 'nextjs-google-analytics';
 
 import hStyles from '@/styles/Header.module.css';
 
@@ -37,7 +37,10 @@ export default function Header({ selectedBorough, setSelectedBorough, dropdownOp
           </Listbox>
         </div>
 
-        <Link href="mailto:hello@tryfuton.com">
+        <Link
+          href="mailto:hello@tryfuton.com"
+          onClick={() => event('click_contact_us')}
+        >
           <div className={hStyles.button}>
             <Image
               height={18}
@@ -48,7 +51,11 @@ export default function Header({ selectedBorough, setSelectedBorough, dropdownOp
           </div>
         </Link>
 
-        <Link href="https://airtable.com/shrHAb9mA5GASYH4D" target="_blank">
+        <Link
+          href="https://airtable.com/shrHAb9mA5GASYH4D"
+          target="_blank"
+          onClick={() => event('click_add_space')}
+        >
           <div className={hStyles.button}>
             <Image
               height={16}

@@ -186,6 +186,7 @@ export default function TableStyles({ data, shortList }) {
           href='https://airtable.com/shrnjLQbDIjQPxH6k'
           className={tStyles.reviewLink}
           target="_blank"
+          onClick={() => event('click_leave_a_review')}
         >
           Leave a review
         </Link>
