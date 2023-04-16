@@ -3,7 +3,11 @@ import { useEffect, useState } from 'react';
 import Head from 'next/head';
 
 import Header from '@/components/Header.js';
+import Text from '@/components/Text';
 import SpaceWidget from '@/components/SpaceWidget';
+import SubmitEmailWidget from '@/components/SubmitEmailWidget';
+
+import useClientSideState from '../hooks/useClientSideState';
 
 import hStyles from '@/styles/Home.module.css';
 
@@ -45,11 +49,14 @@ const GetBoroughsWithSpaces = gql`
 export default function Home() {
   const query = useQuery(GetBoroughsWithSpaces);
   const [selectedBorough, setSelectedBorough] = useState({});
+  const [emailSubmitted, setEmailSubmitted] = useClientSideState('emailSubmitted', null);
 
   useEffect(() => {
     if (query.data && query.data.boroughsWithSpaces && !selectedBorough.id) {
       setSelectedBorough(query.data.boroughsWithSpaces[0]);
     }
+    
+    window.scrollTo(0, 0);
   }, [query.data, selectedBorough]);
 
   if (query.loading) {
@@ -62,12 +69,46 @@ export default function Home() {
   }
 
   const { boroughsWithSpaces } = query.data;
-  const spacesToShow = selectedBorough.spaces || [];
+  const cutoff = 2;
+  const spacesToShow = emailSubmitted
+    ? selectedBorough.spaces || []
+    : (selectedBorough.spaces || []).slice(0, cutoff);
 
   const generateSpaceWidgets = () => {
     return spacesToShow.map((space) => {
       return <SpaceWidget space={space} key={space.id} />;
     });
+  };          
+
+  const generateSpacesFoundNotice = () => {
+    if (!selectedBorough.spaces) return null;
+
+    const spacesLength = selectedBorough.spaces ? selectedBorough.spaces.length : 0;
+    const singularOrPlural = spacesLength === 1 ? 'space' : 'spaces';
+
+    return (
+      <Text.P className={hStyles.spacesFoundNotice}>
+        We&apos;ve found <span className={hStyles.numberOfSpacesFound}>{selectedBorough.spaces.length}</span> {singularOrPlural} in {selectedBorough.name}.
+      </Text.P>
+      );
+  };
+
+  const generateSubmitEmailWidget = () => {
+    if (!selectedBorough.spaces) return null;
+
+    return (
+      !emailSubmitted && 
+        <SubmitEmailWidget
+          numberOfSpacesHidden={selectedBorough.spaces.length - cutoff}
+          selectedBorough={selectedBorough.name}
+          setEmailSubmitted={setEmailSubmitted}
+        />
+    );
+  }
+
+  const removeEmail = () => {
+    localStorage.removeItem('emailSubmitted');
+    setEmailSubmitted(null);
   };
 
   return (
@@ -85,7 +126,13 @@ export default function Home() {
         dropdownOptions={boroughsWithSpaces}
       />
 
-      <main className={hStyles.main}>{generateSpaceWidgets()}</main>
+      <main className={hStyles.main}>
+        {generateSpacesFoundNotice()}
+        {generateSpaceWidgets()}
+        {generateSubmitEmailWidget()}
+      </main>
+
+      {/* <button onClick={removeEmail}>Remove emailSubmitted</button> */}
     </>
   );
 };

@@ -8,10 +8,25 @@
   max-width: 600px;
 }
 
+.spacesFoundNotice {
+  color: var(--body-text-primary-rgba);
+  margin-bottom: 25px;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.numberOfSpacesFound {
+  font-weight: 600;
+}
+
 /* Tablet, Desktop */
 @media (min-width: 800px) {
   .main {
-    top: 140px;
-    max-width: 1260px;
+    top: 120px;
+    max-width: calc(40px + (2 * var(--space-widget-column-width)));
+  }
+
+  .spacesFoundNotice {
+    margin-bottom: 40px;
   }
 }
