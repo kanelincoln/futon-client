@@ -4,8 +4,9 @@ import Head from 'next/head';
 
 import Header from '@/components/Header.js';
 import Text from '@/components/Text';
-import Button from '@/components/Button';
 import SpaceWidget from '@/components/SpaceWidget';
+
+import useClientSideState from '../hooks/useClientSideState';
 
 import hStyles from '@/styles/Home.module.css';
 
@@ -47,6 +48,7 @@ const GetBoroughsWithSpaces = gql`
 export default function Home() {
   const query = useQuery(GetBoroughsWithSpaces);
   const [selectedBorough, setSelectedBorough] = useState({});
+  const [emailSubmitted, setEmailSubmitted] = useClientSideState('emailSubmitted', null);
 
   useEffect(() => {
     if (query.data && query.data.boroughsWithSpaces && !selectedBorough.id) {
@@ -66,21 +68,39 @@ export default function Home() {
   }
 
   const { boroughsWithSpaces } = query.data;
-  const spacesToShow = selectedBorough.spaces || [];
+  const spacesToShow = emailSubmitted
+    ? selectedBorough.spaces || []
+    : (selectedBorough.spaces || []).slice(0, 3);
 
   const generateSpaceWidgets = () => {
     return spacesToShow.map((space) => {
       return <SpaceWidget space={space} key={space.id} />;
     });
-  };
+  };          
 
   const generateSpacesFoundNotice = () => {
-    const singularOrPlural = spacesToShow.length === 1 ? 'space' : 'spaces';
+    if (!selectedBorough.spaces) {
+      return null;
+    }
+
+    const spacesLength = selectedBorough.spaces ? selectedBorough.spaces.length : 0;
+    const singularOrPlural = spacesLength === 1 ? 'space' : 'spaces';
+
     return (
       <Text.P className={hStyles.spacesFoundNotice}>
-        We&apos;ve found <span className={hStyles.numberOfSpacesFound}>{spacesToShow.length}</span> {singularOrPlural} in {selectedBorough.name}.
+        We&apos;ve found <span className={hStyles.numberOfSpacesFound}>{selectedBorough.spaces.length}</span> {singularOrPlural} in {selectedBorough.name}.
       </Text.P>
       );
+  };
+
+  const submitEmail = () => {
+    localStorage.setItem('emailSubmitted', true);
+    setEmailSubmitted(true);
+  };
+
+  const removeEmail = () => {
+    localStorage.removeItem('emailSubmitted');
+    setEmailSubmitted(null);
   };
 
   return (
@@ -102,6 +122,9 @@ export default function Home() {
         {generateSpacesFoundNotice()}
         {generateSpaceWidgets()}
       </main>
+
+      <button onClick={submitEmail}>Add emailSubmitted</button>
+      <button onClick={removeEmail}>Remove emailSubmitted</button>
     </>
   );
 };
