@@ -50,7 +50,6 @@ export default function Home() {
   const query = useQuery(GetBoroughsWithSpaces);
   const [selectedBorough, setSelectedBorough] = useState({});
   const [emailSubmitted, setEmailSubmitted] = useClientSideState('emailSubmitted', null);
-  const [welcomeDialogSeen, setWelcomeDialogSeen] = useClientSideState('welcomeDialogSeen', false);
 
   useEffect(() => {
     if (query.data && query.data.boroughsWithSpaces && !selectedBorough.id) {
@@ -138,7 +137,6 @@ export default function Home() {
       />
 
       <main className={hStyles.main}>
-        {welcomeDialogSeen ? null : <WelcomeDialog setWelcomeDialogSeen={setWelcomeDialogSeen} />}
         {generateSpacesFoundNotice()}
         {generateSpaceWidgets()}
         {generateSubmitEmailWidget()}
