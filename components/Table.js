@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { format } from 'date-fns';
 
 import Text from '@/components/Text';
@@ -180,6 +181,13 @@ export default function TableStyles({ data, shortList }) {
       {rows && generateRows(data)}
 
       <div className={expanded ? tStyles.toggleWhenExpanded : tStyles.toggleWhenCollapsed} onClick={handleClick}>
+        <Link
+          href='https://airtable.com/shrnjLQbDIjQPxH6k'
+          className={tStyles.reviewLink}
+          target="_blank"
+        >
+          Leave a review
+        </Link>
         {expanded ? 'Less' : 'More'}
         <Image
           height={16}

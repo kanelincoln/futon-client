@@ -68,3 +68,12 @@
 .hoursToday {
   color: var(--body-text-primary-rgba);
 }
+
+.reviewLink {
+  text-decoration: underline;
+  margin-right: 30px;
+}
+
+.reviewLink:hover {
+  text-decoration: none;
+}
