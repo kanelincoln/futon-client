@@ -19,6 +19,13 @@
   font-weight: 600;
 }
 
+.containerDuringDataFetching {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 /* Tablet, Desktop */
 @media (min-width: 800px) {
   .main {

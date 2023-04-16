@@ -61,12 +61,20 @@ export default function Home() {
   }, [query.data, selectedBorough]);
 
   if (query.loading) {
-    return <p>Loading...</p>;
+    return (
+      <div className={hStyles.containerDuringDataFetching}>
+        <p>Loading...</p>
+      </div>
+    );
   }
 
   if (query.error) {
     console.log('Error fetching data:', query.error);
-    return <p>Error occurred while fetching data.</p>;
+    return (
+      <div className={hStyles.containerDuringDataFetching}>
+        <p>An error occurred while fetching data.</p>
+      </div>
+    );
   }
 
   const { boroughsWithSpaces } = query.data;
