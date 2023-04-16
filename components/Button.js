@@ -3,12 +3,13 @@ import Image from 'next/image';
 
 import buttonStyles from '@/styles/Button.module.css';
 
-export default function Button({ type, url, children, secondary }) {
+export default function Button({ type, url, children, secondary, disabled }) {
   if (!url) {
     return (
     <button
       type={type}
       className={secondary ? buttonStyles.containerSecondary : buttonStyles.containerPrimary}
+      disabled={disabled}
       >
         {children}
       <Image

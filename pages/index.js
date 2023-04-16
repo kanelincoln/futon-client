@@ -97,14 +97,14 @@ export default function Home() {
     if (!selectedBorough.spaces) return null;
 
     return (
-      !emailSubmitted && <SubmitEmailWidget numberOfSpacesHidden={selectedBorough.spaces.length - cutoff} />
+      !emailSubmitted && 
+        <SubmitEmailWidget
+          numberOfSpacesHidden={selectedBorough.spaces.length - cutoff}
+          selectedBorough={selectedBorough.name}
+          setEmailSubmitted={setEmailSubmitted}
+        />
     );
   }
-
-  const submitEmail = () => {
-    localStorage.setItem('emailSubmitted', true);
-    setEmailSubmitted(true);
-  };
 
   const removeEmail = () => {
     localStorage.removeItem('emailSubmitted');
@@ -132,8 +132,7 @@ export default function Home() {
         {generateSubmitEmailWidget()}
       </main>
 
-      <button onClick={submitEmail}>Add emailSubmitted</button>
-      <button onClick={removeEmail}>Remove emailSubmitted</button>
+      {/* <button onClick={removeEmail}>Remove emailSubmitted</button> */}
     </>
   );
 };

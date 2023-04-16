@@ -1,3 +1,4 @@
+import { useState } from 'react';;
 import { gql, useMutation } from '@apollo/client';
 
 import Text from '@/components/Text';
@@ -11,18 +12,39 @@ const AddEmailToAirtable = gql`
   }
 `;
 
-export default function SubmitEmailWidget({ numberOfSpacesHidden }) {
+export default function SubmitEmailWidget({ selectedBorough, numberOfSpacesHidden, setEmailSubmitted }) {
+  const [buttonContent, setButtonContent] = useState('Give me access');
+  const [buttonDisabled, setButtonDisabled] = useState(false);
   const [addEmailToAirtable] = useMutation(AddEmailToAirtable);
+
+  const addEmailSubmittedToLocalStorage = () => {
+    localStorage.setItem('emailSubmitted', true);
+    setEmailSubmitted(true);
+  };
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     const email = e.target.email.value;
-    console.log(email);
+    setButtonDisabled(true);
+    setButtonContent('Submitting...');
 
     try {
       await addEmailToAirtable({ variables: { email } });
+      addEmailSubmittedToLocalStorage();
     } catch (error) {
       console.error(error);
+    }
+
+    setButtonDisabled(false);
+    setButtonContent('Give me access');
+  };
+
+  const singularOrPlural = (word) => {
+    switch (word) {
+      case 'space':
+        return numberOfSpacesHidden === 1 ? 'space' : 'spaces';
+      case 'is':
+        return numberOfSpacesHidden === 1 ? 'is' : 'are';
     }
   };
 
@@ -30,14 +52,14 @@ export default function SubmitEmailWidget({ numberOfSpacesHidden }) {
     <div className={seStyles.container}>
       <div className={seStyles.messageContainer}>
         <Text.P>
-          {`There are ${numberOfSpacesHidden} more spaces in Westminster that you can’t see, and we’re adding more every day!`}
+          {`There ${singularOrPlural('is')} `} <span className={seStyles.numberOfSpacesHidden}>{numberOfSpacesHidden}</span> {` more ${singularOrPlural('space')} in ${selectedBorough} that you can’t see, and we’re adding more every day!`}
         </Text.P>
 
         <Text.P>
-          {`If you’d like immediate access to of the spaces on Futon, submit your name and email address.`}
+          {`If you’d like immediate access view to all of the spaces on Futon, submit your name and email address.`}
         </Text.P>
       </div>
-      
+
       <div className={seStyles.formContainer}>
         <form onSubmit={handleOnSubmit}>
           <input
@@ -46,9 +68,11 @@ export default function SubmitEmailWidget({ numberOfSpacesHidden }) {
             name="email"
             required
             placeholder="Email address"
+            disabled={buttonDisabled}
+            noValidate
           />
 
-          <Button type="submit" secondary>Give me access</Button>
+          <Button type="submit" secondary disabled={buttonDisabled}>{buttonContent}</Button>
         </form>
       </div>
     </div>
