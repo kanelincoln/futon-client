@@ -96,8 +96,10 @@ export default function Home() {
   const generateSubmitEmailWidget = () => {
     if (!selectedBorough.spaces) return null;
 
+    const hiddenSpacesExist = selectedBorough.spaces.length > cutoff;
+
     return (
-      !emailSubmitted && 
+      !emailSubmitted && hiddenSpacesExist &&
         <SubmitEmailWidget
           numberOfSpacesHidden={selectedBorough.spaces.length - cutoff}
           selectedBorough={selectedBorough.name}
