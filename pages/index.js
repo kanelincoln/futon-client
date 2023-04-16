@@ -5,6 +5,7 @@ import Head from 'next/head';
 import Header from '@/components/Header.js';
 import Text from '@/components/Text';
 import SpaceWidget from '@/components/SpaceWidget';
+import SubmitEmailWidget from '@/components/SubmitEmailWidget';
 
 import useClientSideState from '../hooks/useClientSideState';
 
@@ -68,9 +69,10 @@ export default function Home() {
   }
 
   const { boroughsWithSpaces } = query.data;
+  const cutoff = 2;
   const spacesToShow = emailSubmitted
     ? selectedBorough.spaces || []
-    : (selectedBorough.spaces || []).slice(0, 2);
+    : (selectedBorough.spaces || []).slice(0, cutoff);
 
   const generateSpaceWidgets = () => {
     return spacesToShow.map((space) => {
@@ -79,9 +81,7 @@ export default function Home() {
   };          
 
   const generateSpacesFoundNotice = () => {
-    if (!selectedBorough.spaces) {
-      return null;
-    }
+    if (!selectedBorough.spaces) return null;
 
     const spacesLength = selectedBorough.spaces ? selectedBorough.spaces.length : 0;
     const singularOrPlural = spacesLength === 1 ? 'space' : 'spaces';
@@ -92,6 +92,14 @@ export default function Home() {
       </Text.P>
       );
   };
+
+  const generateSubmitEmailWidget = () => {
+    if (!selectedBorough.spaces) return null;
+
+    return (
+      !emailSubmitted && <SubmitEmailWidget numberOfSpacesHidden={selectedBorough.spaces.length - cutoff} />
+    );
+  }
 
   const submitEmail = () => {
     localStorage.setItem('emailSubmitted', true);
@@ -121,6 +129,7 @@ export default function Home() {
       <main className={hStyles.main}>
         {generateSpacesFoundNotice()}
         {generateSpaceWidgets()}
+        {generateSubmitEmailWidget()}
       </main>
 
       <button onClick={submitEmail}>Add emailSubmitted</button>
