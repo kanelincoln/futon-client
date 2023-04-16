@@ -70,7 +70,7 @@ export default function Home() {
   const { boroughsWithSpaces } = query.data;
   const spacesToShow = emailSubmitted
     ? selectedBorough.spaces || []
-    : (selectedBorough.spaces || []).slice(0, 3);
+    : (selectedBorough.spaces || []).slice(0, 2);
 
   const generateSpaceWidgets = () => {
     return spacesToShow.map((space) => {
