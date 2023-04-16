@@ -37,7 +37,7 @@ export default function Header({ selectedBorough, setSelectedBorough, dropdownOp
           </Listbox>
         </div>
 
-        <Link href="/">
+        <Link href="mailto:hello@tryfuton.com">
           <div className={hStyles.button}>
             <Image
               height={18}
@@ -52,7 +52,7 @@ export default function Header({ selectedBorough, setSelectedBorough, dropdownOp
           <div className={hStyles.button}>
             <Image
               height={16}
-              width={20}
+              width={16}
               src="/images/plus.svg"
               alt="An icon for adding a space"
               />

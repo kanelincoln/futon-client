@@ -78,7 +78,7 @@ export default function Home() {
     const singularOrPlural = spacesToShow.length === 1 ? 'space' : 'spaces';
     return (
       <Text.P className={hStyles.spacesFoundNotice}>
-        We've found <span className={hStyles.numberOfSpacesFound}>{spacesToShow.length}</span> {singularOrPlural} in {selectedBorough.name}.
+        We&apos;ve found <span className={hStyles.numberOfSpacesFound}>{spacesToShow.length}</span> {singularOrPlural} in {selectedBorough.name}.
       </Text.P>
       );
   };
